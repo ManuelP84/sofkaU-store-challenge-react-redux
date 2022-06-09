@@ -5,6 +5,7 @@ import Navbar from './components/Navbar'
 import { stateType } from './state/store'
 import Providers from './components/Providers'
 import Products from './components/Products'
+import Footer from './components/Footer'
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
         <Route path='providers' element={<Providers/>}/>
         <Route path='products' element={<Products/>}/>
       </Routes>
+      <Footer/>
       </BrowserRouter>
     </div>
   )
