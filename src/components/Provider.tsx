@@ -5,9 +5,9 @@ interface IProviderProps {
 
 const Provider: React.FunctionComponent<IProviderProps> = (props) => {
   return(
-      <>
+      <h2>
       Product go here!
-      </>
+      </h2>
   ) ;
 };
 

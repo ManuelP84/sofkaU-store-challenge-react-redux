@@ -6,7 +6,7 @@ interface IProvidersProps {
 const Providers: React.FunctionComponent<IProvidersProps> = (props) => {
   return (
       <>
-      <h1>Providers goes here!</h1>
+      <h2>Providers goes here!</h2>
       </>
   );
 };
