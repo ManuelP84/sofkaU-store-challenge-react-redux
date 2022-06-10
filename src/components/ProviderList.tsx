@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { getAllProviders } from '../actions/providersAction'
 import { useEffect } from "react"
-import { getProviders, getProvidersStatus, getProviderError, statusOption } from "../state/providerSlice"
-import { dispatchType, dispatchWithType } from "../state/store"
+import { getProviders, getProvidersStatus, getProviderError } from "../state/providerSlice"
+import { dispatchWithType } from "../state/store"
+import { statusOption } from "../actions/statusOption"
 
 
 interface IProviderListProps {

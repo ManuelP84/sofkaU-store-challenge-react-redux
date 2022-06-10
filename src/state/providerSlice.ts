@@ -1,13 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { getAllProviders } from '../actions/providersAction'
 import { stateType } from './store'
-
-enum statusOption {
-    IDLE = 'idle',
-    SUCCEEDED = 'succeeded',
-    FAILED = 'failed',
-    LOADING = 'loading'
-}
+import { statusOption } from '../actions/statusOption'
 
 type providerType = {
     id: String,
@@ -57,7 +51,6 @@ export default providersSlice.reducer
 
 export type { providerType }
 export type { initialStateType }
-export { statusOption }
 
 export const getProviders = (state: stateType) => state.providers.providers
 export const getProvidersStatus = (state: stateType) => state.providers.status
