@@ -5,6 +5,7 @@ import { getProductsError, getProductsStatus, getProducts } from '../state/produ
 import { dispatchWithType } from '../state/store';
 import { useEffect } from "react"
 import { statusOption } from '../actions/statusOption';
+import Product from './Product';
 
 interface IProductListProps {
 }
@@ -23,11 +24,52 @@ const ProductList: React.FunctionComponent<IProductListProps> = (props) => {
   }, [dispatch])
 
   return (
-    <div>
-      <h1>Products go here!</h1>
-      {products.map((product) => <h3>{product.name}</h3>)}
+    <div className="row">
+        <div className="col-md">
+            <div className="card card-body">
+                <h5>Products</h5>
+            </div>
+            <div className="card card-body">
+                <table className="justTable">
+                <thead>
+                    <tr>
+                        <th>Product id:</th>
+                        <th>Product name:</th>
+                        <th>Product description:</th>                
+                        <th>Product Quantity:</th>
+                        <th>Provider NIT:</th>
+                    </tr>
+                  </thead>  
+                  
+                    {!productsError && products.map((product) => <Product key={product.id} product={product}/>)}
+                  
+                </table>
+            </div>
+        </div>
     </div>
   );
 };
 
 export default ProductList;
+
+
+/**
+ * return (
+    <div>
+      <h1>Products go here!</h1>
+      {products.map((product) => <h3>{product.name}</h3>)}
+    </div>
+  );
+ */
+
+  /**
+   * <tr>                           
+                            <td>{{ product.name }}</td>
+                            {% if product.category != Null %}
+                                <td>{{ product.category }}</td>
+                            {% else %}
+                                <td></td>
+                            {% endif %}                            
+                            <td>{{ product.price }}</td>
+                        </tr>
+   */
