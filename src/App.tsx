@@ -3,23 +3,31 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
 import Navbar from './components/Navbar'
 import { stateType } from './state/store'
-import Providers from './components/Providers'
-import Products from './components/Products'
+import ProviderList from './components/ProviderList'
+import ProductList from './components/ProductList'
 import Footer from './components/Footer'
 
 function App() {
 
   const {user} = useSelector((state: stateType) => state.logged)
 
+  const logged = true;
+
   return (
-    <div className="App">
-      
+    <div className="App">      
       <BrowserRouter>
-      <Navbar logged = {true}/>
+      <Navbar logged = {logged}/>
+        {logged && 
       <Routes>
-        <Route path='providers' element={<Providers/>}/>
-        <Route path='products' element={<Products/>}/>
+        <Route path='providers' element={<ProviderList/>}/>
+        <Route path='products' element={<ProductList/>}/>
       </Routes>
+        }
+        {!logged &&
+        <Routes>
+        <Route path='providers' element={<ProviderList/>}/>
+      </Routes>
+        }
       <Footer/>
       </BrowserRouter>
     </div>

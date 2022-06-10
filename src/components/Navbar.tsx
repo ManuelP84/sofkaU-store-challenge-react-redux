@@ -12,22 +12,27 @@ const Navbar: React.FunctionComponent<INavbarProps> = ({logged}) => {
         <div className="container-fluid">
             <img src="" height="100" alt=""/>
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+            {logged && 
             <ul className="navbar-nav">
                 <li>
-                <Link className='nav-link' to={'/providers'}>Providers</Link>
+                    <Link className='nav-link' to={'/providers'}>Providers</Link>
                 </li>
                 <li>
-                <Link className='nav-link' to={'/products'}>Products</Link>
+                    <Link className='nav-link' to={'/products'}>Products</Link>
                 </li>
             </ul>
+            }
         </div>
         </div> 
-    
-    <a className="nav-link" href="">Logout</a>
-    <a className="nav-link" href="">Username</a>
-    <a className="nav-item" href="">
-        <img src="" height="35" className="d-inline-block align-top rounded-circle"/>
-    </a>
+    {logged && 
+    <>
+        <a className="nav-link" href="">Logout</a>
+        <a className="nav-link" href="">Username</a>
+        <a className="nav-item" href="">
+            <img src="" height="35" className="d-inline-block align-top rounded-circle"/>
+        </a>
+    </>}
+    {!logged && <a className="nav-link" href="">Login</a>}
     </nav>
   );
 };
