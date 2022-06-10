@@ -54,10 +54,3 @@ const ProviderList: React.FunctionComponent<IProviderListProps> = (props) => {
 };
 
 export default ProviderList;
-
-/**
- * <div>
-      <h1>Providers go here!</h1>
-      {providers.map((provider) => <h3>{provider.nit}</h3>)}
-    </div> 
- */
