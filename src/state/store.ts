@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import loggedReducer from "./loggedInSlice";
 import customersReducer from "./customerSlice"
 import providerReducer from "./providerSlice";
+import productReducer from "./productSlice"
 import { useDispatch } from "react-redux";
 
 
@@ -10,7 +11,8 @@ const store = configureStore({
     reducer: {
         logged: loggedReducer,
         customers: customersReducer,
-        providers: providerReducer
+        providers: providerReducer,
+        products: productReducer
     }
 });
 
