@@ -8,7 +8,7 @@ type providerType = {
     nit: String,
     name: String,
     phone: String,
-    address: String,
+    email: String,
     note: String
 }
 
