@@ -1,13 +1,20 @@
 import * as React from 'react';
+import {providerType } from "../state/providerSlice"
 
 interface IProviderProps {
+  provider:providerType
 }
 
-const Provider: React.FunctionComponent<IProviderProps> = (props) => {
+const Provider: React.FunctionComponent<IProviderProps> = ({provider}) => {
   return(
-      <h2>
-      Product go here!
-      </h2>
+    <tr>
+    <td >{ provider.id}</td>
+    <td>{ provider.nit}</td>
+    <td>{ provider.name}</td>
+    <td>{ provider.phone}</td>
+    <td>{ provider.email}</td>
+    <td>{ provider.note}</td>
+  </tr>
   ) ;
 };
 
