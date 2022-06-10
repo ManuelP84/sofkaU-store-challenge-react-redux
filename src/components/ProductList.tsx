@@ -51,25 +51,3 @@ const ProductList: React.FunctionComponent<IProductListProps> = (props) => {
 };
 
 export default ProductList;
-
-
-/**
- * return (
-    <div>
-      <h1>Products go here!</h1>
-      {products.map((product) => <h3>{product.name}</h3>)}
-    </div>
-  );
- */
-
-  /**
-   * <tr>                           
-                            <td>{{ product.name }}</td>
-                            {% if product.category != Null %}
-                                <td>{{ product.category }}</td>
-                            {% else %}
-                                <td></td>
-                            {% endif %}                            
-                            <td>{{ product.price }}</td>
-                        </tr>
-   */
