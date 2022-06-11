@@ -2,15 +2,17 @@ import { createSlice } from "@reduxjs/toolkit";
 import { stateType } from "./store";
 import { statusOption } from "../actions/statusOption";
 import { getAllProducts } from "../actions/productsAction"
+import { providerType } from "./providerSlice";
 
 type productType = {
-    id: String,
+    //id: String,
     name: String,
     description: String,
     min: Number,
     max: Number,
     quantity: Number,
-    providerNit: String
+    price: Number,
+    provider: providerType
 }
 
 interface initialStateType {

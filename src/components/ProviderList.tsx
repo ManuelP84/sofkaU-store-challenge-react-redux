@@ -6,6 +6,7 @@ import { getProviders, getProvidersStatus, getProviderError } from "../state/pro
 import { dispatchWithType } from "../state/store"
 import { statusOption } from "../actions/statusOption"
 import Provider from "../components/Provider"
+import ProviderForm from './ProviderForm';
 
 
 interface IProviderListProps {
@@ -26,8 +27,12 @@ const ProviderList: React.FunctionComponent<IProviderListProps> = (props) => {
   
 
   return (
+    <>
+    <ProviderForm/>
     <div className="row">
+    
     <div className="col-md">
+    
         <div className="card card-body">
             <h5>Providers</h5>
         </div>
@@ -49,7 +54,8 @@ const ProviderList: React.FunctionComponent<IProviderListProps> = (props) => {
             </table>
         </div>
     </div>
-</div>
+  </div>
+    </>
   )
 };
 

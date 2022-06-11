@@ -6,6 +6,7 @@ import { dispatchWithType } from '../state/store';
 import { useEffect } from "react"
 import { statusOption } from '../actions/statusOption';
 import Product from './Product';
+import ProductForm from '../components/ProductForm'
 
 interface IProductListProps {
 }
@@ -24,6 +25,8 @@ const ProductList: React.FunctionComponent<IProductListProps> = (props) => {
   }, [dispatch])
 
   return (
+    <>
+    <ProductForm/>
     <div className="row">
         <div className="col-md">
             <div className="card card-body">
@@ -47,6 +50,8 @@ const ProductList: React.FunctionComponent<IProductListProps> = (props) => {
             </div>
         </div>
     </div>
+    </>
+    
   );
 };
 

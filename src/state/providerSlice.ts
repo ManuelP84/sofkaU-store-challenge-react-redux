@@ -1,10 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { getAllProviders } from '../actions/providersAction'
+import { getAllProviders, postProvider } from '../actions/providersAction'
 import { stateType } from './store'
 import { statusOption } from '../actions/statusOption'
+import { Action } from 'history'
 
 type providerType = {
-    id: String,
+    //id: String,
     nit: String,
     name: String,
     phone: String,
@@ -41,8 +42,21 @@ const providersSlice = createSlice(
             })
             builder.addCase(getAllProviders.rejected, (state, action) => {
                 state.status = statusOption.FAILED
+                state.error = "Sorry, something went wrong!"
                 state.providers = []
             })
+            builder.addCase(postProvider.pending, (state) => {
+                state.status = statusOption.LOADING
+            })
+            builder.addCase(postProvider.fulfilled, (state, action) => {
+                state.status = statusOption.SUCCEEDED
+                state.providers.push(action.payload)
+            })
+            builder.addCase(postProvider.rejected, (state) => {
+                state.status = statusOption.FAILED
+                state.error = "Sorry, something went wrong!"
+            })
+
         }
     }
 )
