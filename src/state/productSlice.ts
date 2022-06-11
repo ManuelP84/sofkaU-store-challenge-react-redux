@@ -34,6 +34,7 @@ const productsSlice = createSlice(
         reducers: {
 
         },
+        //GET PRODUCTS
         extraReducers: (builder) => {
             builder.addCase(getAllProducts.pending, (state, action) => {
                 state.status = statusOption.LOADING
@@ -46,6 +47,8 @@ const productsSlice = createSlice(
                 state.status = statusOption.FAILED
                 state.products = []
             })
+
+            //POST PRODUCTS
             builder.addCase(postProduct.pending, (state) => {
                 state.status = statusOption.LOADING
             })

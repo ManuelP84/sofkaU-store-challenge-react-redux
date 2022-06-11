@@ -15,6 +15,7 @@ type billType = {
     customerName: string,
     sellerName: string,
     paid: number | string,
+    date?: string,
     products: productItemType
 }
 

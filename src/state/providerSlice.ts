@@ -32,6 +32,7 @@ const providersSlice = createSlice(
         reducers: {
 
         },
+        //GET PROVIDERS
         extraReducers: (builder) => {
             builder.addCase(getAllProviders.pending, (state, action) => {
                 state.status = statusOption.LOADING
@@ -45,6 +46,8 @@ const providersSlice = createSlice(
                 state.error = "Sorry, something went wrong!"
                 state.providers = []
             })
+
+            //POST PROVIDERS
             builder.addCase(postProvider.pending, (state) => {
                 state.status = statusOption.LOADING
             })
