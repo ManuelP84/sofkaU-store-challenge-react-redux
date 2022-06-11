@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import '../style/navbar.css'
+import logo from "../assets/logo.png"
 
 interface INavbarProps {
     logged: Object
@@ -10,7 +11,7 @@ const Navbar: React.FunctionComponent<INavbarProps> = ({logged}) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container-fluid">
-            <img src="" height="100" alt=""/>
+            <img className="rounded-circle" src={logo} height="100" alt=""/>
             <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                 {logged && 
                 <ul className="navbar-nav">
