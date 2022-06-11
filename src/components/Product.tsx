@@ -10,11 +10,13 @@ const Product: React.FunctionComponent<IProductProps> = ({product}) => {
   return (
     
     <tr>
-      <td >{ product.id}</td>
       <td>{ product.name}</td>
       <td>{ product.description}</td>
       <td>{ product.quantity}</td>
-      <td>{ product.providerNit}</td>
+      <td>{ product.price}</td>
+      <td>{ product.provider.name}</td>
+      
+      
     </tr>
   );
 };

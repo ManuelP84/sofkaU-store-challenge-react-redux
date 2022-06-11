@@ -2,19 +2,21 @@ import * as React from 'react';
 import { useState } from 'react'
 import { productType } from '../state/productSlice';
 import { dispatchWithType } from "../state/store"
-import { postProduct } from "../actions/productsAction"
+import { getAllProducts, postProduct } from "../actions/productsAction"
 import { providerType } from '../state/providerSlice';
 import { useSelector } from 'react-redux';
 import { stateType } from '../state/store'
 import { getAllProviders } from '../actions/providersAction'
+import { useEffect } from "react"
+import { nanoid } from '@reduxjs/toolkit';
  
 interface IProductFormProps {
 }
 
 const ProductForm: React.FunctionComponent<IProductFormProps> = (props) => {
+    const dispatch = dispatchWithType()
     
-    const dispatch1 = dispatchWithType()
-    const dispatch2 = dispatchWithType()
+        
     const [name, setName] = useState('')
     const [description, setDescription] = useState('')
     const [min, setMin] = useState<any>(0)
@@ -23,15 +25,32 @@ const ProductForm: React.FunctionComponent<IProductFormProps> = (props) => {
     const [provider, setProvider] = useState({} as providerType)
     const quantity = 0
     const providers = useSelector((state: stateType) => state.providers.providers)
-    dispatch1(getAllProviders())
 
-    
+    useEffect(() => {     
+      console.log("En useEffect dentro de product form") // prueba   
+      dispatch(getAllProviders())        
+     }, [dispatch])
+
+    const addProvider = async (e: React.ChangeEvent<HTMLSelectElement>) => {         
+        const selectedProvider = providers.find((provider) => provider.id === e.target.value)
+        if(selectedProvider){setProvider(selectedProvider)}
+    }
 
     const onAdd = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         if(name && description && min && max && price && provider){
-          const newProduct: productType = {name, description, min, max, quantity, price, provider}
-          dispatch2(postProduct(newProduct))
+          const newProduct: productType = 
+          {
+            id: nanoid(), 
+            name: name, 
+            description: description, 
+            min: min, 
+            max: max, 
+            quantity: quantity, 
+            price: price, 
+            provider: provider 
+          }
+          dispatch(postProduct(newProduct))
           
           setName('')
           setDescription('')
@@ -39,15 +58,12 @@ const ProductForm: React.FunctionComponent<IProductFormProps> = (props) => {
           setMax(0)
           setPrice(0)
           setProvider({} as providerType)
+          
         }
-      } 
-      
-    const addProvider = (e: React.ChangeEvent<HTMLSelectElement>) => {
-
-    }
+      }    
   
     return (
-        <div className="row">
+    <div className="row">
       <div className="col-md">
         <div className="card card-body">
           <h5>Create product</h5>
@@ -109,9 +125,11 @@ const ProductForm: React.FunctionComponent<IProductFormProps> = (props) => {
                 />
               </div>
               <div className="form-group col-md-6">
-                <select onChange={(e) => addProvider(e)}>
+              <label><i>Select provider</i></label>
+                <select className="form-select" aria-label="Default select example" onChange={(e) => addProvider(e)}>
+                <option>---------</option>
                     {providers.map((providerOption) => (
-                        <option >{providerOption.name}</option>
+                        <option key={providerOption.id} value={providerOption.id}>{providerOption.name}</option>
                     ))}
                 </select>                
               </div>
@@ -126,3 +144,4 @@ const ProductForm: React.FunctionComponent<IProductFormProps> = (props) => {
 };
 
 export default ProductForm;
+

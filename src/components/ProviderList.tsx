@@ -38,19 +38,18 @@ const ProviderList: React.FunctionComponent<IProviderListProps> = (props) => {
         </div>
         <div className="card card-body">
             <table className="justTable">
-            <thead>
-                <tr>
-                    <th>Provider id:</th>
-                    <th>Provider NIT:</th>
-                    <th>Provider name:</th>                
-                    <th>Provider phone:</th>
-                    <th>Provider email:</th>
-                    <th>Provider note:</th>
-                </tr>
-              </thead>  
-              
+              <tbody>
+                  <tr>
+                      <th>Nit:</th>
+                      <th>Name:</th>                
+                      <th>Phone:</th>
+                      <th>Email:</th>
+                      <th>Note:</th>
+                  </tr>
+                </tbody>  
+                <tbody>
                 {!providersError && providers.map((provider) => <Provider key={provider.id} provider={provider}/>)}
-              
+              </tbody>
             </table>
         </div>
     </div>

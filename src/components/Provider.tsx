@@ -8,13 +8,12 @@ interface IProviderProps {
 const Provider: React.FunctionComponent<IProviderProps> = ({provider}) => {
   return(
     <tr>
-    <td >{ provider.id}</td>
-    <td>{ provider.nit}</td>
-    <td>{ provider.name}</td>
-    <td>{ provider.phone}</td>
-    <td>{ provider.email}</td>
-    <td>{ provider.note}</td>
-  </tr>
+      <td>{ provider.nit}</td>
+      <td>{ provider.name}</td>
+      <td>{ provider.phone}</td>
+      <td>{ provider.email}</td>
+      <td>{ provider.note}</td>
+    </tr>
   ) ;
 };
 

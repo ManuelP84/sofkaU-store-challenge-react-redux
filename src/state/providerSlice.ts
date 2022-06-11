@@ -5,12 +5,12 @@ import { statusOption } from '../actions/statusOption'
 import { Action } from 'history'
 
 type providerType = {
-    //id: String,
-    nit: String,
-    name: String,
-    phone: String,
-    email: String,
-    note: String
+    id: number | string,
+    nit: string,
+    name: string,
+    phone: string,
+    email: string,
+    note: string
 }
 
 interface initialStateType {

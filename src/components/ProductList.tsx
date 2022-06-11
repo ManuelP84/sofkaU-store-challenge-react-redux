@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { useSelector } from 'react-redux';
 import { getAllProducts } from '../actions/productsAction';
-import { getProductsError, getProductsStatus, getProducts } from '../state/productSlice';
+import { getProductsError, getProductsStatus, getProducts, productType } from '../state/productSlice';
 import { dispatchWithType } from '../state/store';
 import { useEffect } from "react"
 import { statusOption } from '../actions/statusOption';
 import Product from './Product';
 import ProductForm from '../components/ProductForm'
+
 
 interface IProductListProps {
 }
@@ -19,6 +20,7 @@ const ProductList: React.FunctionComponent<IProductListProps> = (props) => {
   const productsError = useSelector(getProductsError)
 
   useEffect(() => {
+    console.log("En useEffect dentro de product list") // prueba
     if(productsStatus === statusOption.IDLE){
       dispatch(getAllProducts())
     }
@@ -34,18 +36,18 @@ const ProductList: React.FunctionComponent<IProductListProps> = (props) => {
             </div>
             <div className="card card-body">
                 <table className="justTable">
-                <thead>
-                    <tr>
-                        <th>Product id:</th>
-                        <th>Product name:</th>
-                        <th>Product description:</th>                
-                        <th>Product Quantity:</th>
-                        <th>Provider NIT:</th>
-                    </tr>
-                  </thead>  
-                  
-                    {!productsError && products.map((product) => <Product key={product.id} product={product}/>)}
-                  
+                  <tbody>
+                      <tr>
+                          <th>Product:</th>
+                          <th>Description:</th>                
+                          <th>Quantity:</th>
+                          <th>Price:</th>
+                          <th>Provider</th>
+                      </tr>
+                    </tbody>  
+                    <tbody>
+                      {!productsError && products.map((product: productType) => <Product key={product.id} product={product}/>)}
+                    </tbody>
                 </table>
             </div>
         </div>

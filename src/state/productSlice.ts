@@ -5,13 +5,13 @@ import { getAllProducts } from "../actions/productsAction"
 import { providerType } from "./providerSlice";
 
 type productType = {
-    //id: String,
-    name: String,
-    description: String,
-    min: Number,
-    max: Number,
-    quantity: Number,
-    price: Number,
+    id: number | string,
+    name: string,
+    description: string,
+    min: number,
+    max: number,
+    quantity: number,
+    price: number,
     provider: providerType
 }
 
