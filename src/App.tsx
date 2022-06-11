@@ -6,6 +6,8 @@ import { stateType } from './state/store'
 import ProviderList from './components/ProviderList'
 import ProductList from './components/ProductList'
 import Footer from './components/Footer'
+import BillList from './components/BillList'
+import Welcome from './components/Welcome'
 
 function App() {
 
@@ -21,11 +23,12 @@ function App() {
       <Routes>
         <Route path='providers' element={<ProviderList/>}/>
         <Route path='products' element={<ProductList/>}/>
+        <Route path='bills' element={<BillList/>}/>
       </Routes>
         }
         {!logged &&
         <Routes>
-        <Route path='providers' element={<ProviderList/>}/>
+        <Route path='welcome' element={<Welcome/>}/>
       </Routes>
         }
       <Footer/>

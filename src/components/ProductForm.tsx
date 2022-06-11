@@ -15,7 +15,7 @@ interface IProductFormProps {
 
 const ProductForm: React.FunctionComponent<IProductFormProps> = (props) => {
     
-      const [name, setName] = useState('')
+    const [name, setName] = useState('')
     const [description, setDescription] = useState('')
     const [min, setMin] = useState<any>(0)
     const [max, setMax] = useState<any>(0)    
@@ -27,7 +27,6 @@ const ProductForm: React.FunctionComponent<IProductFormProps> = (props) => {
     const dispatch = dispatchWithType()  
 
     useEffect(() => {     
-      console.log("En useEffect dentro de product form") // prueba   
       dispatch(getAllProviders())        
      }, [dispatch])
 

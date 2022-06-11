@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { stateType } from "./store";
 import { statusOption } from "../actions/statusOption";
-import { getAllProducts } from "../actions/productsAction"
+import { getAllProducts, postProduct } from "../actions/productsAction"
 import { providerType } from "./providerSlice";
 
 type productType = {
@@ -45,6 +45,17 @@ const productsSlice = createSlice(
             builder.addCase(getAllProducts.rejected, (state, action) => {
                 state.status = statusOption.FAILED
                 state.products = []
+            })
+            builder.addCase(postProduct.pending, (state) => {
+                state.status = statusOption.LOADING
+            })
+            builder.addCase(postProduct.fulfilled, (state, action) => {
+                state.status = statusOption.SUCCEEDED
+                state.products.push(action.payload)
+            })
+            builder.addCase(postProduct.rejected, (state) => {
+                state.status = statusOption.FAILED
+                state.error = "Sorry, something went wrong!"
             })
         }
     }
