@@ -20,7 +20,6 @@ const ProductList: React.FunctionComponent<IProductListProps> = (props) => {
   const productsError = useSelector(getProductsError)
 
   useEffect(() => {
-    console.log("En useEffect dentro de product list") // prueba
     if(productsStatus === statusOption.IDLE){
       dispatch(getAllProducts())
     }

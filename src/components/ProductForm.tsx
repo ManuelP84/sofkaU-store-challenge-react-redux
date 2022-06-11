@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useState } from 'react'
 import { productType } from '../state/productSlice';
 import { dispatchWithType } from "../state/store"
-import { getAllProducts, postProduct } from "../actions/productsAction"
+import { postProduct } from "../actions/productsAction"
 import { providerType } from '../state/providerSlice';
 import { useSelector } from 'react-redux';
 import { stateType } from '../state/store'
@@ -14,10 +14,8 @@ interface IProductFormProps {
 }
 
 const ProductForm: React.FunctionComponent<IProductFormProps> = (props) => {
-    const dispatch = dispatchWithType()
     
-        
-    const [name, setName] = useState('')
+      const [name, setName] = useState('')
     const [description, setDescription] = useState('')
     const [min, setMin] = useState<any>(0)
     const [max, setMax] = useState<any>(0)    
@@ -25,6 +23,8 @@ const ProductForm: React.FunctionComponent<IProductFormProps> = (props) => {
     const [provider, setProvider] = useState({} as providerType)
     const quantity = 0
     const providers = useSelector((state: stateType) => state.providers.providers)
+
+    const dispatch = dispatchWithType()  
 
     useEffect(() => {     
       console.log("En useEffect dentro de product form") // prueba   
@@ -50,15 +50,13 @@ const ProductForm: React.FunctionComponent<IProductFormProps> = (props) => {
             price: price, 
             provider: provider 
           }
-          dispatch(postProduct(newProduct))
-          
+          dispatch(postProduct(newProduct))          
           setName('')
           setDescription('')
           setMin(0)
           setMax(0)
           setPrice(0)
-          setProvider({} as providerType)
-          
+          setProvider({} as providerType)          
         }
       }    
   

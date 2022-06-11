@@ -5,7 +5,6 @@ import { dispatchWithType } from "../state/store"
 import { nanoid } from '@reduxjs/toolkit';
 
 interface IProviderFormProps {
-
 }
 
 const ProviderForm: React.FunctionComponent<IProviderFormProps> = (props) => {
@@ -22,7 +21,14 @@ const ProviderForm: React.FunctionComponent<IProviderFormProps> = (props) => {
     const onAdd = (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault()
       if(nit && name && phone && email && note){
-        const newProvider: providerType = {id: nanoid(), nit, name, phone, email, note}
+        const newProvider: providerType = 
+        {id: nanoid(), 
+          nit, 
+          name, 
+          phone, 
+          email, 
+          note
+        }
         dispatch(postProvider(newProvider))
         setNit('')
         setName('')
