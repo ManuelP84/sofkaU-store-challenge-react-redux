@@ -2,13 +2,15 @@ import { configureStore } from "@reduxjs/toolkit";
 import loggedReducer from "./loggedInSlice";
 import providerReducer from "./providerSlice";
 import productReducer from "./productSlice"
+import billReducer from "./billSlice"
 import { useDispatch } from "react-redux";
 
 const store = configureStore({
     reducer: {
         logged: loggedReducer,
         providers: providerReducer,
-        products: productReducer
+        products: productReducer,
+        bills: billReducer
     }
 });
 

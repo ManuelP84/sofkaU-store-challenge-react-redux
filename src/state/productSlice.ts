@@ -16,8 +16,8 @@ type productType = {
 }
 
 interface initialStateType {
-    products: productType[]
-    status: statusOption
+    products: productType[],
+    status: statusOption,
     error: string | null
 }
 
