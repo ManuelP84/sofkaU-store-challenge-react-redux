@@ -1,6 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
+type userType = {
+    email: string,
+    emailVerified: boolean,
+    photoURL: string | null 
+}
+
+interface initialStateType {
+    user: userType | null
+}
+
+const initialState: initialStateType = {
     user: null
 }
 
@@ -10,12 +20,10 @@ const loggedInSlice = createSlice(
         initialState,
         reducers:{
             logInReducer(state, action){
-                const stateLoggedIn = {...state, user: action.payload}
-                return stateLoggedIn
+                state.user = action.payload
             },
-            logOutInReducer(state, action){
-                const stateLoggedOut = {...state, user: null}
-                return stateLoggedOut
+            logOutInReducer(state){
+                state.user = null
             }
 
         }
@@ -25,3 +33,7 @@ const loggedInSlice = createSlice(
 export default loggedInSlice.reducer
 
 export const {logInReducer, logOutInReducer} = loggedInSlice.actions
+
+export type { userType }
+
+export type loggedStateType = typeof initialState

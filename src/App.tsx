@@ -9,28 +9,33 @@ import Footer from './components/Footer'
 import BillList from './components/BillList'
 import Welcome from './components/Welcome'
 import LogIn from './components/LogIn'
+import SignUp from './components/SignUp'
+import Home from "./components/Home"
 
 function App() {
 
   const {user} = useSelector((state: stateType) => state.logged)
 
-  const logged = false;
+  //const logged = false;
+  console.log(user)
 
   return (
     <div className="App">      
       <BrowserRouter>
-      <Navbar logged = {logged}/>
-        {logged && 
+      <Navbar logged = {user}/>
+        {user && 
       <Routes>
+        <Route path='home' element={<Home/>}/>
         <Route path='providers' element={<ProviderList/>}/>
         <Route path='products' element={<ProductList/>}/>
         <Route path='bills' element={<BillList/>}/>
       </Routes>
         }
-        {!logged &&
+        {!user &&
         <Routes>
         <Route path='welcome' element={<Welcome/>}/>
         <Route path='login' element={<LogIn/>}/>
+        <Route path='signin' element={<SignUp/>}/>
       </Routes>
         }
       <Footer/>

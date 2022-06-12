@@ -1,8 +1,9 @@
-import * as React from "react";
+import * as React from 'react';
 
-interface IWelcomeProps {}
+interface IHomeProps {
+}
 
-const Welcome: React.FunctionComponent<IWelcomeProps> = (props) => {
+const Home: React.FunctionComponent<IHomeProps> = (props) => {
   return (
     <div>
       <br />
@@ -13,7 +14,7 @@ const Welcome: React.FunctionComponent<IWelcomeProps> = (props) => {
       <br />
       <br />
       <br />
-      <h1>Welcome to the Store Management System</h1>
+      <h1>Home</h1>
       <br />
       <br />
       <br />
@@ -26,4 +27,4 @@ const Welcome: React.FunctionComponent<IWelcomeProps> = (props) => {
   );
 };
 
-export default Welcome;
+export default Home;

@@ -1,31 +1,26 @@
 import * as React from "react";
 import { useState } from "react";
+import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { auth } from "../firebaseConfig";
-import { Link } from "react-router-dom";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { useDispatch } from "react-redux";
-import { logInReducer } from "../state/loggedInSlice";
-import LogInGoogle from "./LogInGoogle";
+import { useDispatch} from 'react-redux';
+import { logInReducer } from "../state/loggedInSlice"
 
-interface ILogInProps {}
+interface ISignUpProps {}
 
-const LogIn: React.FunctionComponent<ILogInProps> = (props) => {
+const SignUp: React.FunctionComponent<ISignUpProps> = (props) => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
-  const onLogIn = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const onSignUp = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     if (userName && password) {
-      signInWithEmailAndPassword(auth, userName, password)
+      createUserWithEmailAndPassword(auth, userName, password)
         .then((userCredential) => {
           const user = userCredential.user;
-
-          console.log("*User credentials*");
-          console.log(userCredential);
-          console.log("*User: *");
+          console.log("User:");
           console.log(user);
-          dispatch(logInReducer(user));
+          dispatch(logInReducer(user))
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -43,10 +38,10 @@ const LogIn: React.FunctionComponent<ILogInProps> = (props) => {
     <>
       <div className="user_card">
         <div className="d-flex justify-content-center">
-          <h3 id="form-title">LOGIN</h3>
+          <h3 id="form-title">SIGN UP</h3>
         </div>
         <div className="d-flex justify-content-center form_container">
-          <form method="POST" action="">
+          <form>
             <div className="input-group mb-3">
               <div className="input-group-append"></div>
               <input
@@ -74,29 +69,16 @@ const LogIn: React.FunctionComponent<ILogInProps> = (props) => {
               <button
                 className="btn btn-secondary btn-lg"
                 value="Sign In"
-                onClick={(e) => onLogIn(e)}
+                onClick={(e) => onSignUp(e)}
               >
-                Log In
+                Sign Up
               </button>
             </div>
           </form>
-        </div>
-
-        <div className="mt-4">
-          <LogInGoogle />
-          <div className="d-flex justify-content-center links">
-            Don't have an account?{" "}
-            <Link to={"/signin"} className="ml-2">
-              Sign In
-            </Link>
-          </div>
-          <div className="d-flex justify-content-center links">
-            {/* Forgot password? <a href="{% url 'reset_password' %}" className="ml-2">Reset password</a> */}
-          </div>
         </div>
       </div>
     </>
   );
 };
 
-export default LogIn;
+export default SignUp;
