@@ -8,12 +8,13 @@ import ProductList from './components/ProductList'
 import Footer from './components/Footer'
 import BillList from './components/BillList'
 import Welcome from './components/Welcome'
+import LogIn from './components/LogIn'
 
 function App() {
 
   const {user} = useSelector((state: stateType) => state.logged)
 
-  const logged = true;
+  const logged = false;
 
   return (
     <div className="App">      
@@ -29,6 +30,7 @@ function App() {
         {!logged &&
         <Routes>
         <Route path='welcome' element={<Welcome/>}/>
+        <Route path='login' element={<LogIn/>}/>
       </Routes>
         }
       <Footer/>

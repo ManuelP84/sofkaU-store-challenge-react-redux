@@ -1,5 +1,4 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
-import { itemType } from "../state/itemSlice"
 import { productType } from "../state/productSlice"
 
 const GET_ALL_PRODUCTS = 'http://localhost:8081/v1/api/get/products'

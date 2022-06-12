@@ -37,16 +37,16 @@ const Navbar: React.FunctionComponent<INavbarProps> = ({logged}) => {
         </div> 
     {logged && 
     <>
-        <a className="nav-link" href="">Logout</a>
-        <a className="nav-link" href="">Username</a>
-        <a className="nav-item" href="">
+        <Link to={'/logout'} className="nav-link" >Logout</Link>
+        <Link className="nav-link" to={'/username'}>Username</Link>
+        <Link className="nav-item" to={'/Profile'}>
             <img src="" height="35" className="d-inline-block align-top rounded-circle"/>
-        </a>
+        </Link>
     </>
     }
     {!logged && 
     <>
-    <a className="nav-link" href="">Login</a>
+    <Link className="nav-link" to={'/login'}>Login</Link>
     </>
     }
     </nav>
