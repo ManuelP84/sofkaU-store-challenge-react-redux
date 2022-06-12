@@ -4,13 +4,15 @@ import providerReducer from "./providerSlice";
 import productReducer from "./productSlice"
 import billReducer from "./billSlice"
 import { useDispatch } from "react-redux";
+import itemReducer from "../state/itemSlice"
 
 const store = configureStore({
     reducer: {
         logged: loggedReducer,
         providers: providerReducer,
         products: productReducer,
-        bills: billReducer
+        bills: billReducer,
+        items: itemReducer
     }
 });
 

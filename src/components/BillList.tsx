@@ -33,7 +33,7 @@ const BillList: React.FunctionComponent<IBillListProps> = (props) => {
     <div className="col-md">
     
         <div className="card card-body">
-            <h5>Providers</h5>
+            <h5>Bills</h5>
         </div>
         <div className="card card-body">
             <table className="justTable">
