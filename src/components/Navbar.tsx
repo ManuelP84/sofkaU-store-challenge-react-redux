@@ -2,6 +2,7 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import "../style/navbar.css";
 import logo from "../assets/logo.png";
+import profile from "../assets/profile.png";
 import { useDispatch } from "react-redux";
 import { logOutInReducer } from "../state/loggedInSlice";
 import { userType } from "../state/loggedInSlice"
@@ -77,7 +78,7 @@ const Navbar: React.FunctionComponent<INavbarProps> = ({ logged }) => {
               className="d-inline-block align-top rounded-circle"
             />: 
             <img
-              src={"../assets/profile.png"}
+              src={profile}
               height="35"
               className="d-inline-block align-top rounded-circle"
             />           
