@@ -34,17 +34,19 @@ const ItemForm: React.FunctionComponent<IItemFormProps> = (props) => {
 
   const onAdd = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault()
-    console.log(quantity)
-    console.log(product.quantity)
-    console.log(product)
-    if(quantity && product){
+    if(quantity && product && product.quantity >= quantity){
        const newItem: itemType = 
        {
         id: product.id,
         name: product.name,
+        description: product.description,
+        min: product.min,
+        max: product.max,
         quantity: quantity,
         price: product.price,
-        subTotal: quantity*product.price
+        subTotal: quantity*product.price,
+        balance: product.quantity - quantity,
+        provider: product.provider
        }
        
        dispatch(addItemReducer(newItem))

@@ -1,12 +1,18 @@
 import { createSlice, PayloadAction, current } from "@reduxjs/toolkit";
+import { providerType } from "./providerSlice";
 import { stateType } from "./store";
 
 type itemType = {
     id: number | string,
     name: string,
+    description: string,
+    min: number,
+    max: number,
     quantity: number,
     price: number,
-    subTotal: number
+    subTotal: number,
+    balance: number
+    provider: providerType
      
 }
 
@@ -24,12 +30,10 @@ const itemsSlice = createSlice (
         initialState,
         reducers : {
             addItemReducer(state, action): any{
-                console.log(state.items) // prueba   25
-                console.log(action.payload) // prueba   26
-                state.items.push(action.payload)
-                console.log(state.items) // prueba   27             
-                //const newState = [...state.items, action.payload]
-                //return newState
+                state.items.push(action.payload)          
+            },
+            clearItemsReducer(state): any{
+                state.items = []
             }
         }
     }
@@ -40,5 +44,8 @@ export default itemsSlice.reducer
 export const getItems = (state: stateType) => state.items.items
 
 export const { addItemReducer } = itemsSlice.actions
+
+export const { clearItemsReducer } = itemsSlice.actions
+
 
 export type { itemType }

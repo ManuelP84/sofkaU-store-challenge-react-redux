@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { statusOption } from "../actions/statusOption";
 import { stateType } from "./store";
 import { getAllBills, postBill } from "../actions/billsAction"
+import { itemType } from "./itemSlice";
  
 type productItemType = {
     id: number | string,
@@ -16,7 +17,7 @@ type billType = {
     sellerName: string,
     paid: number | string,
     date?: string,
-    products: productItemType
+    items: itemType[]
 }
 
 interface initialStateType {

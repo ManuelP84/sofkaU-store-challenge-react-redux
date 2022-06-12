@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { stateType } from "./store";
 import { statusOption } from "../actions/statusOption";
-import { getAllProducts, postProduct } from "../actions/productsAction"
+import { getAllProducts, postProduct, putProduct } from "../actions/productsAction"
 import { providerType } from "./providerSlice";
 
 type productType = {
@@ -57,6 +57,20 @@ const productsSlice = createSlice(
                 state.products.push(action.payload)
             })
             builder.addCase(postProduct.rejected, (state) => {
+                state.status = statusOption.FAILED
+                state.error = "Sorry, something went wrong!"
+            })
+
+            //PUT PRODUCTS
+            builder.addCase(putProduct.pending, (state) => {
+                state.status = statusOption.LOADING
+            })
+            builder.addCase(putProduct.fulfilled, (state, action) => {
+                state.status = statusOption.SUCCEEDED
+                const newState = state.products.map((item) => item.id === action.payload.id ? action.payload : item)
+                state.products = newState;
+            })
+            builder.addCase(putProduct.rejected, (state) => {
                 state.status = statusOption.FAILED
                 state.error = "Sorry, something went wrong!"
             })

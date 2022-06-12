@@ -21,7 +21,7 @@ const ProductForm: React.FunctionComponent<IProductFormProps> = (props) => {
     const [max, setMax] = useState<any>(0)    
     const [price, setPrice] = useState<any>(0)
     const [provider, setProvider] = useState({} as providerType)
-    const quantity = 0
+    const [quantity, setQuantity] = useState<any>(0)  
     const providers = useSelector((state: stateType) => state.providers.providers)
 
     const dispatch = dispatchWithType()  
@@ -108,6 +108,17 @@ const ProductForm: React.FunctionComponent<IProductFormProps> = (props) => {
                   placeholder="Max. quantity"
                   value={max}
                   onChange={(e) => setMax(e.target.value)}
+                />
+              </div>
+              <div className="form-group col-md-6">
+                <label><i>Quantity</i></label>
+                <input
+                  type="number"
+                  className="form-control"
+                  name='quantity'
+                  placeholder="Max. quantity"
+                  value={quantity}
+                  onChange={(e) => setQuantity(e.target.value)}
                 />
               </div>
               <div className="form-group col-md-6">

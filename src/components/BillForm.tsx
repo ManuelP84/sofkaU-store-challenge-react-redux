@@ -1,13 +1,15 @@
 import * as React from 'react';
 import { useState } from 'react'
-import { productType } from '../state/productSlice';
 import { dispatchWithType } from "../state/store"
-import { useEffect } from "react"
-import { getAllProducts } from "../actions/productsAction"
 import ItemForm from './ItemForm';
 import { useSelector } from "react-redux";
 import { getItems, itemType } from "../state/itemSlice"
 import { getProducts } from "../state/productSlice";
+import { billType } from "../state/billSlice"
+import { nanoid } from '@reduxjs/toolkit';
+import { postBill } from '../actions/billsAction';
+import { clearItemsReducer } from "../state/itemSlice"
+import { putProduct } from '../actions/productsAction';
 
 interface IBillFormProps {
 }
@@ -19,14 +21,43 @@ const BillForm: React.FunctionComponent<IBillFormProps> = (props) => {
   const items = useSelector(getItems);
   const products = useSelector(getProducts);
 
+  const dispatch = dispatchWithType() 
+
 
    const onAdd = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if(items.length !== 0){
+
+      const paid = items.reduce((subTotal, nextSubTotal) => subTotal + nextSubTotal.subTotal, 0)
+      const newBill: billType =
+      {
+        id: nanoid(),
+        customerName: customerName,
+        sellerName: sellerName,
+        paid: paid,
+        items: items,
+      }
+
+      items.map(async(item: itemType) => {
+        return dispatch(putProduct(
+          {
+            id: item.id,
+            name: item.name,
+            description: item.description,
+            min: item.min,
+            max: item.max,
+            quantity: item.balance,
+            price: item.price,        
+            provider: item.provider
+	        }))
+      })
       
-    }
-    
-   }  
+      //updateProducts(items)
+      dispatch(postBill(newBill)) 
+      setCustomerName('')
+      setSellerName('')
+      dispatch(clearItemsReducer())
+    }}  
   
   return (
     <div className="row">
