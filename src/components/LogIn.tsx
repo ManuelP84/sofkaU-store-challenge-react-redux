@@ -29,7 +29,7 @@ const LogIn: React.FunctionComponent<ILogInProps> = (props) => {
         })
         .catch((error) => {
           const errorCode = error.code;
-          const errorMessage = error.message;
+          const errorMessage: string | null = error.message;
           console.log("*Error message**");
           console.log(errorMessage);
         });

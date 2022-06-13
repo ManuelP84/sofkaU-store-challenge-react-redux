@@ -34,7 +34,7 @@ const ItemForm: React.FunctionComponent<IItemFormProps> = (props) => {
 
   const onAdd = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault()
-    if(quantity && product && product.quantity >= quantity){
+    if(quantity > 0 && product && product.quantity >= quantity){
        const newItem: itemType = 
        {
         id: product.id,
@@ -91,8 +91,9 @@ const ItemForm: React.FunctionComponent<IItemFormProps> = (props) => {
                 name="quantity"
                 placeholder="Quantity"
                 value={quantity}
-                onChange={(e) => setQuantity(e.target.value)}
+                onChange={(e) => setQuantity(e.target.value)}                
               />
+              {quantity <= 0 && <i>Quantity must be greater than cero</i>}
             </div>
             <div className="col-md-4">
               <button onClick={(e) => onAdd(e)} type="submit" className="btn btn-primary col-md-10">

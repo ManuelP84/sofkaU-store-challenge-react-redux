@@ -37,7 +37,7 @@ const ProductForm: React.FunctionComponent<IProductFormProps> = (props) => {
 
     const onAdd = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        if(name && description && min && max && price && provider){
+        if(name && description && min>0 && max>0 && price>0 && provider){
           const newProduct: productType = 
           {
             id: nanoid(), 
@@ -98,6 +98,7 @@ const ProductForm: React.FunctionComponent<IProductFormProps> = (props) => {
                   value={min}
                   onChange={(e) => setMin(e.target.value)}
                 />
+                {min < 0 && <i>Min. must be greater than cero</i>}
               </div>
               <div className="form-group col-md-6">
                 <label><i>Max. quantity</i></label>
@@ -109,6 +110,7 @@ const ProductForm: React.FunctionComponent<IProductFormProps> = (props) => {
                   value={max}
                   onChange={(e) => setMax(e.target.value)}
                 />
+                {max < 0 && <i>Max. must be greater than cero</i>}
               </div>
               <div className="form-group col-md-6">
                 <label><i>Quantity</i></label>
@@ -120,6 +122,7 @@ const ProductForm: React.FunctionComponent<IProductFormProps> = (props) => {
                   value={quantity}
                   onChange={(e) => setQuantity(e.target.value)}
                 />
+                {quantity < 0 && <i>Quantity must be greater than cero</i>}
               </div>
               <div className="form-group col-md-6">
                 <label><i>Price</i></label>
@@ -131,6 +134,7 @@ const ProductForm: React.FunctionComponent<IProductFormProps> = (props) => {
                   value={price}
                   onChange={(e) => setPrice(e.target.value)}
                 />
+                {price <= 0 && <i>Price must be greater than cero</i>}
               </div>
               <div className="form-group col-md-6">
               <label><i>Select provider</i></label>

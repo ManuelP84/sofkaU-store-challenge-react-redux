@@ -45,6 +45,11 @@ const Navbar: React.FunctionComponent<INavbarProps> = ({ logged }) => {
               <li>
                 <Link className="nav-link" to={"/bills"}>
                   Bills
+                </Link>                
+              </li>
+              <li>
+                <Link className="nav-link" to={"/receipts"}>
+                  Receipts
                 </Link>
               </li>
             </ul>

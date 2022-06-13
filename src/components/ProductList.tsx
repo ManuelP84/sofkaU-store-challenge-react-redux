@@ -42,6 +42,7 @@ const ProductList: React.FunctionComponent<IProductListProps> = (props) => {
                           <th>Quantity:</th>
                           <th>Price:</th>
                           <th>Provider</th>
+                          <th>Quantity observation:</th>
                       </tr>
                     </tbody>  
                     <tbody>

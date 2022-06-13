@@ -11,12 +11,12 @@ import Welcome from './components/Welcome'
 import LogIn from './components/LogIn'
 import SignUp from './components/SignUp'
 import Home from "./components/Home"
+import ReceiptList from './components/ReceiptList'
 
 function App() {
 
   const {user} = useSelector((state: stateType) => state.logged)
 
-  //const logged = false;
   console.log(user)
 
   return (
@@ -29,6 +29,8 @@ function App() {
         <Route path='providers' element={<ProviderList/>}/>
         <Route path='products' element={<ProductList/>}/>
         <Route path='bills' element={<BillList/>}/>
+        <Route path='receipts' element={<ReceiptList/>}/>
+
       </Routes>
         }
         {!user &&

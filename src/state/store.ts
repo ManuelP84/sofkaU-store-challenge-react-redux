@@ -5,6 +5,7 @@ import productReducer from "./productSlice"
 import billReducer from "./billSlice"
 import { useDispatch } from "react-redux";
 import itemReducer from "../state/itemSlice"
+import receiptReducer from "../state/receiptSlice"
 
 const store = configureStore({
     reducer: {
@@ -12,7 +13,8 @@ const store = configureStore({
         providers: providerReducer,
         products: productReducer,
         bills: billReducer,
-        items: itemReducer
+        items: itemReducer,
+        receipts: receiptReducer
     }
 });
 

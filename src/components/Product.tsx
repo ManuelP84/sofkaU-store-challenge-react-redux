@@ -15,6 +15,11 @@ const Product: React.FunctionComponent<IProductProps> = ({product}) => {
       <td>{ product.quantity}</td>
       <td>{ product.price}</td>
       <td>{ product.provider.name}</td>
+      <td>
+        { product.quantity <= product.min && <>Quantity below the minimum allowed: {product.min}</> }
+        { product.quantity >= product.max && <>Quantity under the maximum  allowed: {product.max}</> }
+        {product.quantity > product.min && product.quantity < product.max && <>Quantity ok</>}
+      </td>
       
       
     </tr>
