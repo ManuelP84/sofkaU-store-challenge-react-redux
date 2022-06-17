@@ -21,16 +21,15 @@ const LogInGoogle: React.FunctionComponent<ILogInGoogleProps> = (props) => {
     signInWithPopup(auth, googleProviderAuth)
       .then((result) => {
         const credential: OAuthCredential | null =
-        GoogleAuthProvider.credentialFromResult(result);
+          GoogleAuthProvider.credentialFromResult(result);
         const token = credential!.accessToken;
         const user = result.user;
-        console.log("*User:*")
-        console.log(user)
+        console.log("*User:*");
+        console.log(user);
 
         dispatch(logInReducer(user));
-        console.log(user)
+        console.log(user);
         navigate("/Home");
-        
       })
       .catch((error) => {
         const errorCode = error.code;

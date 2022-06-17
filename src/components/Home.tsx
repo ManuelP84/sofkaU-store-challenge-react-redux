@@ -1,7 +1,6 @@
-import * as React from 'react';
+import * as React from "react";
 
-interface IHomeProps {
-}
+interface IHomeProps {}
 
 const Home: React.FunctionComponent<IHomeProps> = (props) => {
   return (
@@ -14,7 +13,7 @@ const Home: React.FunctionComponent<IHomeProps> = (props) => {
       <br />
       <br />
       <br />
-      <h1>Home</h1>
+      <h1>Welcome to the Store Management System</h1>
       <br />
       <br />
       <br />

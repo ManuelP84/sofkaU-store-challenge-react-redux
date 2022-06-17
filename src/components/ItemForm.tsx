@@ -6,9 +6,9 @@ import { getAllProducts, postProduct } from "../actions/productsAction";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getProducts } from "../state/productSlice";
-import { getItems, itemType } from "../state/itemSlice"
-import { addItemReducer } from "../state/itemSlice" 
-import ItemList  from "../components/ItemList"
+import { getItems, itemType } from "../state/itemSlice";
+import { addItemReducer } from "../state/itemSlice";
+import ItemList from "../components/ItemList";
 
 interface IItemFormProps {}
 
@@ -19,24 +19,24 @@ const ItemForm: React.FunctionComponent<IItemFormProps> = (props) => {
   const items = useSelector(getItems);
 
   const dispatch = dispatchWithType();
-  
 
   useEffect(() => {
     dispatch(getAllProducts());
   }, [dispatch]);
 
   const addProduct = async (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedProduct = products.find((product) => product.id === e.target.value)
-    if(selectedProduct){
-        setProduct(selectedProduct)
+    const selectedProduct = products.find(
+      (product) => product.id === e.target.value
+    );
+    if (selectedProduct) {
+      setProduct(selectedProduct);
     }
   };
 
   const onAdd = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    e.preventDefault()
-    if(quantity > 0 && product && product.quantity >= quantity){
-       const newItem: itemType = 
-       {
+    e.preventDefault();
+    if (quantity > 0 && product && product.quantity >= quantity) {
+      const newItem: itemType = {
         id: product.id,
         name: product.name,
         description: product.description,
@@ -44,17 +44,17 @@ const ItemForm: React.FunctionComponent<IItemFormProps> = (props) => {
         max: product.max,
         quantity: quantity,
         price: product.price,
-        subTotal: quantity*product.price,
+        subTotal: quantity * product.price,
         balance: product.quantity - quantity,
-        provider: product.provider
-       }
-       
-       dispatch(addItemReducer(newItem))
-       setQuantity(0)
-       setProduct({} as productType)
-    }else{
-        setQuantity(0)
-        setProduct({} as productType)
+        provider: product.provider,
+      };
+
+      dispatch(addItemReducer(newItem));
+      setQuantity(0);
+      setProduct({} as productType);
+    } else {
+      setQuantity(0);
+      setProduct({} as productType);
     }
   };
 
@@ -91,18 +91,22 @@ const ItemForm: React.FunctionComponent<IItemFormProps> = (props) => {
                 name="quantity"
                 placeholder="Quantity"
                 value={quantity}
-                onChange={(e) => setQuantity(e.target.value)}                
+                onChange={(e) => setQuantity(e.target.value)}
               />
               {quantity <= 0 && <i>Quantity must be greater than cero</i>}
             </div>
             <div className="col-md-4">
-              <button onClick={(e) => onAdd(e)} type="submit" className="btn btn-primary col-md-10">
+              <button
+                onClick={(e) => onAdd(e)}
+                type="submit"
+                className="btn btn-primary col-md-10"
+              >
                 Add product
               </button>
             </div>
           </div>
         </div>
-        <ItemList items={items}/>
+        <ItemList items={items} />
       </div>
     </>
   );

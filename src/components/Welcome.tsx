@@ -13,7 +13,7 @@ const Welcome: React.FunctionComponent<IWelcomeProps> = (props) => {
       <br />
       <br />
       <br />
-      <h1>Welcome to the Store Management System</h1>
+      <h1>Store Management System</h1>
       <br />
       <br />
       <br />

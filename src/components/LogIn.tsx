@@ -87,7 +87,7 @@ const LogIn: React.FunctionComponent<ILogInProps> = (props) => {
           <div className="d-flex justify-content-center links">
             Don't have an account?{" "}
             <Link to={"/signin"} className="ml-2">
-              Sign In
+              Sign Up
             </Link>
           </div>
           <div className="d-flex justify-content-center links">

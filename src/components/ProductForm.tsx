@@ -1,65 +1,68 @@
-import * as React from 'react';
-import { useState } from 'react'
-import { productType } from '../state/productSlice';
-import { dispatchWithType } from "../state/store"
-import { postProduct } from "../actions/productsAction"
-import { providerType } from '../state/providerSlice';
-import { useSelector } from 'react-redux';
-import { stateType } from '../state/store'
-import { getAllProviders } from '../actions/providersAction'
-import { useEffect } from "react"
-import { nanoid } from '@reduxjs/toolkit';
- 
-interface IProductFormProps {
-}
+import * as React from "react";
+import { useState } from "react";
+import { productType } from "../state/productSlice";
+import { dispatchWithType } from "../state/store";
+import { postProduct } from "../actions/productsAction";
+import { providerType } from "../state/providerSlice";
+import { useSelector } from "react-redux";
+import { stateType } from "../state/store";
+import { getAllProviders } from "../actions/providersAction";
+import { useEffect } from "react";
+import { nanoid } from "@reduxjs/toolkit";
+
+interface IProductFormProps {}
 
 const ProductForm: React.FunctionComponent<IProductFormProps> = (props) => {
-    
-    const [name, setName] = useState('')
-    const [description, setDescription] = useState('')
-    const [min, setMin] = useState<any>(0)
-    const [max, setMax] = useState<any>(0)    
-    const [price, setPrice] = useState<any>(0)
-    const [provider, setProvider] = useState({} as providerType)
-    const [quantity, setQuantity] = useState<any>(0)  
-    const providers = useSelector((state: stateType) => state.providers.providers)
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [min, setMin] = useState<any>(0);
+  const [max, setMax] = useState<any>(0);
+  const [price, setPrice] = useState<any>(0);
+  const [provider, setProvider] = useState({} as providerType);
+  const [quantity, setQuantity] = useState<any>(0);
+  const providers = useSelector(
+    (state: stateType) => state.providers.providers
+  );
 
-    const dispatch = dispatchWithType()  
+  const dispatch = dispatchWithType();
 
-    useEffect(() => {     
-      dispatch(getAllProviders())        
-     }, [dispatch])
+  useEffect(() => {
+    dispatch(getAllProviders());
+  }, [dispatch]);
 
-    const addProvider = async (e: React.ChangeEvent<HTMLSelectElement>) => {         
-        const selectedProvider = providers.find((provider) => provider.id === e.target.value)
-        if(selectedProvider){setProvider(selectedProvider)}
+  const addProvider = async (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedProvider = providers.find(
+      (provider) => provider.id === e.target.value
+    );
+    if (selectedProvider) {
+      setProvider(selectedProvider);
     }
+  };
 
-    const onAdd = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
-        if(name && description && min>0 && max>0 && price>0 && provider){
-          const newProduct: productType = 
-          {
-            id: nanoid(), 
-            name: name, 
-            description: description, 
-            min: min, 
-            max: max, 
-            quantity: quantity, 
-            price: price, 
-            provider: provider 
-          }
-          dispatch(postProduct(newProduct))          
-          setName('')
-          setDescription('')
-          setMin(0)
-          setMax(0)
-          setPrice(0)
-          setProvider({} as providerType)          
-        }
-      }    
-  
-    return (
+  const onAdd = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (name && description && min > 0 && max > 0 && price > 0 && provider) {
+      const newProduct: productType = {
+        id: nanoid(),
+        name: name,
+        description: description,
+        min: min,
+        max: max,
+        quantity: quantity,
+        price: price,
+        provider: provider,
+      };
+      dispatch(postProduct(newProduct));
+      setName("");
+      setDescription("");
+      setMin(0);
+      setMax(0);
+      setPrice(0);
+      setProvider({} as providerType);
+    }
+  };
+
+  return (
     <div className="row">
       <div className="col-md">
         <div className="card card-body">
@@ -72,7 +75,7 @@ const ProductForm: React.FunctionComponent<IProductFormProps> = (props) => {
                 <input
                   type="text"
                   className="form-control"
-                  name='name'
+                  name="name"
                   placeholder="Product name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
@@ -82,18 +85,20 @@ const ProductForm: React.FunctionComponent<IProductFormProps> = (props) => {
                 <input
                   type="text"
                   className="form-control"
-                  name='description'
+                  name="description"
                   placeholder="Description"
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                 />
               </div>
               <div className="form-group col-md-6">
-              <label><i>Min. quantity</i></label>
+                <label>
+                  <i>Min. quantity</i>
+                </label>
                 <input
                   type="number"
                   className="form-control"
-                  name='min'
+                  name="min"
                   placeholder="Min. quantity"
                   value={min}
                   onChange={(e) => setMin(e.target.value)}
@@ -101,11 +106,13 @@ const ProductForm: React.FunctionComponent<IProductFormProps> = (props) => {
                 {min < 0 && <i>Min. must be greater than cero</i>}
               </div>
               <div className="form-group col-md-6">
-                <label><i>Max. quantity</i></label>
+                <label>
+                  <i>Max. quantity</i>
+                </label>
                 <input
                   type="number"
                   className="form-control"
-                  name='max'
+                  name="max"
                   placeholder="Max. quantity"
                   value={max}
                   onChange={(e) => setMax(e.target.value)}
@@ -113,11 +120,13 @@ const ProductForm: React.FunctionComponent<IProductFormProps> = (props) => {
                 {max < 0 && <i>Max. must be greater than cero</i>}
               </div>
               <div className="form-group col-md-6">
-                <label><i>Quantity</i></label>
+                <label>
+                  <i>Quantity</i>
+                </label>
                 <input
                   type="number"
                   className="form-control"
-                  name='quantity'
+                  name="quantity"
                   placeholder="Max. quantity"
                   value={quantity}
                   onChange={(e) => setQuantity(e.target.value)}
@@ -125,11 +134,13 @@ const ProductForm: React.FunctionComponent<IProductFormProps> = (props) => {
                 {quantity < 0 && <i>Quantity must be greater than cero</i>}
               </div>
               <div className="form-group col-md-6">
-                <label><i>Price</i></label>
+                <label>
+                  <i>Price</i>
+                </label>
                 <input
                   type="number"
                   className="form-control"
-                  name='price'
+                  name="price"
                   placeholder="Price"
                   value={price}
                   onChange={(e) => setPrice(e.target.value)}
@@ -137,23 +148,31 @@ const ProductForm: React.FunctionComponent<IProductFormProps> = (props) => {
                 {price <= 0 && <i>Price must be greater than cero</i>}
               </div>
               <div className="form-group col-md-6">
-              <label><i>Select provider</i></label>
-                <select className="form-select" aria-label="Default select example" onChange={(e) => addProvider(e)}>
-                <option>---------</option>
-                    {providers.map((providerOption) => (
-                        <option key={providerOption.id} value={providerOption.id}>{providerOption.name}</option>
-                    ))}
-                </select>                
+                <label>
+                  <i>Select provider</i>
+                </label>
+                <select
+                  className="form-select"
+                  aria-label="Default select example"
+                  onChange={(e) => addProvider(e)}
+                >
+                  <option>---------</option>
+                  {providers.map((providerOption) => (
+                    <option key={providerOption.id} value={providerOption.id}>
+                      {providerOption.name}
+                    </option>
+                  ))}
+                </select>
               </div>
-            </div>            
-            <button type="submit" className="btn btn-primary col-md-12">Create</button>
+            </div>
+            <button type="submit" className="btn btn-primary col-md-12">
+              Create
+            </button>
           </form>
         </div>
       </div>
     </div>
-
   );
 };
 
 export default ProductForm;
-

@@ -5,18 +5,23 @@ import { productType } from "../state/productSlice";
 import { dispatchWithType } from "../state/store";
 import { receiptType } from "../state/receiptSlice";
 import { postReceipt } from "../actions/receiptsAction";
-
+import { useEffect } from "react";
 import { useState } from "react";
 import { putProduct } from "../actions/productsAction";
+import { getAllProducts } from "../actions/productsAction";
 
 interface IReceiptFormProps {}
 
 const ReceiptForm: React.FunctionComponent<IReceiptFormProps> = (props) => {
-  const [quantity, setQuantity] = useState<any>(0);
+  const [quantity, setQuantity] = useState<number>(0);
   const products = useSelector(getProducts);
   const [product, setProduct] = useState({} as productType);
 
   const dispatch = dispatchWithType();
+
+  useEffect(() => {
+    dispatch(getAllProducts());
+  }, [dispatch]);
 
   const addProduct = async (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedProduct = products.find(
@@ -91,7 +96,7 @@ const ReceiptForm: React.FunctionComponent<IReceiptFormProps> = (props) => {
               name="quantity"
               placeholder="Quantity"
               value={quantity}
-              onChange={(e) => setQuantity(e.target.value)}
+              onChange={(e) => setQuantity(e.target.valueAsNumber)}
             />
             {quantity <= 0 && <i>Quantity must be greater than cero</i>}
           </div>

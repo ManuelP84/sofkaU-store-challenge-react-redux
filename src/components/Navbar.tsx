@@ -3,22 +3,24 @@ import { Link } from "react-router-dom";
 import "../style/navbar.css";
 import logo from "../assets/logo.png";
 import profile from "../assets/profile.png";
-import { useDispatch } from "react-redux";
 import { logOutInReducer } from "../state/loggedInSlice";
-import { userType } from "../state/loggedInSlice"
-import { dispatchWithType } from "../state/store"
+import { userType } from "../state/loggedInSlice";
+import { dispatchWithType } from "../state/store";
+import { useNavigate } from "react-router-dom";
 
 interface INavbarProps {
-  logged: userType | null
+  logged: userType | null;
 }
 
 const Navbar: React.FunctionComponent<INavbarProps> = ({ logged }) => {
+  const navigate = useNavigate();
   const dispatch = dispatchWithType();
-  console.log(logged)
+  console.log(logged);
 
   const onLogOut = () => {
-    dispatch(logOutInReducer())
-  }
+    dispatch(logOutInReducer());
+    navigate("/welcome");
+  };
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -45,7 +47,7 @@ const Navbar: React.FunctionComponent<INavbarProps> = ({ logged }) => {
               <li>
                 <Link className="nav-link" to={"/bills"}>
                   Bills
-                </Link>                
+                </Link>
               </li>
               <li>
                 <Link className="nav-link" to={"/receipts"}>
@@ -67,27 +69,28 @@ const Navbar: React.FunctionComponent<INavbarProps> = ({ logged }) => {
       </div>
       {logged && (
         <>
-          <a
-          type="button"
-            onClick={() => onLogOut()}
-            className="nav-link"
-          >
+          <a type="button" onClick={() => onLogOut()} className="nav-link">
             Logout
           </a>
-          {logged.email && <Link className="nav-link" to={"/home"}>{logged.email}</Link>}
+          {logged.email && (
+            <Link className="nav-link" to={"/home"}>
+              {logged.email}
+            </Link>
+          )}
           <Link className="nav-item" to={"/home"}>
-            {logged.photoURL  ? 
-            <img
-              src={logged.photoURL}
-              height="35"
-              className="d-inline-block align-top rounded-circle"
-            />: 
-            <img
-              src={profile}
-              height="35"
-              className="d-inline-block align-top rounded-circle"
-            />           
-            }
+            {logged.photoURL ? (
+              <img
+                src={logged.photoURL}
+                height="35"
+                className="d-inline-block align-top rounded-circle"
+              />
+            ) : (
+              <img
+                src={profile}
+                height="35"
+                className="d-inline-block align-top rounded-circle"
+              />
+            )}
           </Link>
         </>
       )}

@@ -1,42 +1,39 @@
-import { useState } from 'react'
-import { postProvider } from '../actions/providersAction'
-import { providerType } from '../state/providerSlice';
-import { dispatchWithType } from "../state/store"
-import { nanoid } from '@reduxjs/toolkit';
+import { useState } from "react";
+import { postProvider } from "../actions/providersAction";
+import { providerType } from "../state/providerSlice";
+import { dispatchWithType } from "../state/store";
+import { nanoid } from "@reduxjs/toolkit";
 
-interface IProviderFormProps {
-}
+interface IProviderFormProps {}
 
 const ProviderForm: React.FunctionComponent<IProviderFormProps> = (props) => {
+  const [nit, setNit] = useState("");
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [note, setNote] = useState("");
 
+  const dispatch = dispatchWithType();
 
-    const [nit, setNit] = useState('')
-    const [name, setName] = useState('')
-    const [phone, setPhone] = useState('')
-    const [email, setEmail] = useState('')
-    const [note, setNote] = useState('')
-
-    const dispatch = dispatchWithType()
-
-    const onAdd = (e: React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault()
-      if(nit && name && phone && email && note){
-        const newProvider: providerType = 
-        {id: nanoid(), 
-          nit, 
-          name, 
-          phone, 
-          email, 
-          note
-        }
-        dispatch(postProvider(newProvider))
-        setNit('')
-        setName('')
-        setEmail('')
-        setPhone('')
-        setNote('')
-      }
+  const onAdd = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (nit && name && phone && email && note) {
+      const newProvider: providerType = {
+        id: nanoid(),
+        nit,
+        name,
+        phone,
+        email,
+        note,
+      };
+      dispatch(postProvider(newProvider));
+      setNit("");
+      setName("");
+      setEmail("");
+      setPhone("");
+      setNote("");
     }
+  };
 
   return (
     <div className="row">
@@ -51,7 +48,7 @@ const ProviderForm: React.FunctionComponent<IProviderFormProps> = (props) => {
                 <input
                   type="text"
                   className="form-control"
-                  name='nit'
+                  name="nit"
                   placeholder="Nit"
                   value={nit}
                   onChange={(e) => setNit(e.target.value)}
@@ -61,18 +58,18 @@ const ProviderForm: React.FunctionComponent<IProviderFormProps> = (props) => {
                 <input
                   type="text"
                   className="form-control"
-                  name='name'
+                  name="name"
                   placeholder="Name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                 />
               </div>
               <div className="form-group col-md-6">
-              <label></label>
+                <label></label>
                 <input
                   type="text"
                   className="form-control"
-                  name='phone'
+                  name="phone"
                   placeholder="Phone"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
@@ -83,7 +80,7 @@ const ProviderForm: React.FunctionComponent<IProviderFormProps> = (props) => {
                 <input
                   type="text"
                   className="form-control"
-                  name='email'
+                  name="email"
                   placeholder="Email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -94,21 +91,21 @@ const ProviderForm: React.FunctionComponent<IProviderFormProps> = (props) => {
                 <input
                   type="text"
                   className="form-control"
-                  name='note'
+                  name="note"
                   placeholder="Note"
                   value={note}
                   onChange={(e) => setNote(e.target.value)}
                 />
               </div>
             </div>
-            
-            <button type="submit" className="btn btn-primary col-md-12">Register</button>
 
+            <button type="submit" className="btn btn-primary col-md-12">
+              Register
+            </button>
           </form>
         </div>
       </div>
     </div>
-
   );
 };
 

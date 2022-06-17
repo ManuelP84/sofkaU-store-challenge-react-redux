@@ -1,16 +1,16 @@
 import * as React from "react";
 import { useState } from "react";
-import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebaseConfig";
-import { useDispatch} from 'react-redux';
-import { logInReducer } from "../state/loggedInSlice"
+import { useDispatch } from "react-redux";
+import { logInReducer } from "../state/loggedInSlice";
 
 interface ISignUpProps {}
 
 const SignUp: React.FunctionComponent<ISignUpProps> = (props) => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const onSignUp = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
@@ -20,7 +20,7 @@ const SignUp: React.FunctionComponent<ISignUpProps> = (props) => {
           const user = userCredential.user;
           console.log("User:");
           console.log(user);
-          dispatch(logInReducer(user))
+          dispatch(logInReducer(user));
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -68,7 +68,7 @@ const SignUp: React.FunctionComponent<ISignUpProps> = (props) => {
             <div className="d-flex justify-content-center mt-3 login_container">
               <button
                 className="btn btn-secondary btn-lg"
-                value="Sign In"
+                value="Sign Up"
                 onClick={(e) => onSignUp(e)}
               >
                 Sign Up

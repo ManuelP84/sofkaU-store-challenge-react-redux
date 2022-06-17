@@ -4,7 +4,6 @@ import { dispatchWithType } from "../state/store";
 import ItemForm from "./ItemForm";
 import { useSelector } from "react-redux";
 import { getItems, itemType } from "../state/itemSlice";
-import { getProducts } from "../state/productSlice";
 import { billType } from "../state/billSlice";
 import { nanoid } from "@reduxjs/toolkit";
 import { postBill } from "../actions/billsAction";
@@ -17,7 +16,6 @@ const BillForm: React.FunctionComponent<IBillFormProps> = (props) => {
   const [customerName, setCustomerName] = useState("");
   const [sellerName, setSellerName] = useState("");
   const items = useSelector(getItems);
-  const products = useSelector(getProducts);
 
   const dispatch = dispatchWithType();
 
